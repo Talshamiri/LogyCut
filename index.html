@@ -1,5 +1,13 @@
 <!doctype html>
 <title>Site Maintenance</title>
+<style>
+  #video {
+    width: 640px; /* Adjust as needed */
+    height: 480px; /* Adjust as needed */
+    transform: scaleX(-1); /* Mirror effect */
+    border: 2px solid #ccc; /* Optional border */
+  }
+</style>
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LNT879VF57"></script>
@@ -26,6 +34,27 @@
   a { color: #dc8100; text-decoration: none; }
   a:hover { color: #333; text-decoration: none; }
 </style>
+
+  <video id="video" autoplay playsinline></video>
+
+  <script>
+    const video = document.getElementById('video');
+
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function (stream) {
+          video.srcObject = stream;
+        })
+        .catch(function (error) {
+          console.error('Error accessing camera:', error);
+          alert("Camera access denied or not available.");
+        });
+    } else {
+      console.error('getUserMedia is not supported by this browser');
+      alert("Your browser does not support camera access.");
+    }
+  </script>
+
 
 <article>
     <h1>We&rsquo;ll be back soon!</h1>
